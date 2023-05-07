@@ -1,0 +1,79 @@
+services:
+
+  #PHP Service
+  app:
+    image: php:7.1.33-fpm-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arcatest
+    env_file:
+      - .env
+    restart: unless-stopped
+    tty: true
+    user: root
+    volumes:
+      - ./:/var/www
+    working_dir: /var/www
+    networks:
+      - arcatest
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  #Nginx Service
+  webserver:
+    image: nginx:1.23.1-alpine
+    container_name: arcatest-nginx
+    env_file:
+      - .env
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - arcatest
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  #MySQL Service
+  mariadb:
+    image: mariadb:10.9.5
+    container_name: arcatest-mariadb
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - '3306:3306'
+    environment:
+      MARIADB_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MARIADB_ROOT_HOST: "%"
+      MARIADB_DATABASE: '${DB_DATABASE}'
+      MARIADB_USER: '${DB_USERNAME}'
+      MARIADB_PASSWORD: '${DB_PASSWORD}'
+    volumes:
+      - mariadb:/var/lib/mysql
+      - ./docker-compose/mariadb:/docker-entrypoint-initdb.d
+    networks:
+      - arcatest
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+      retries: 20
+      interval: 5s
+      timeout: 5s
+
+#Docker Networks
+networks:
+  arcatest:
+    driver: bridge
+volumes:
+  mariadb:
+    driver: local

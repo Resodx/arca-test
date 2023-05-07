@@ -1,11 +1,13 @@
-FROM php:7.1.33-fpm-alpine
+FROM php:8.1.18-fpm-alpine
+
+USER root
 
 RUN apk update
 
 WORKDIR /var/www
 
 # Install dependencies
-RUN apk add --no-cache \
+RUN apk add \
     make \
     libpng-dev \
     oniguruma-dev \

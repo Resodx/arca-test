@@ -51,7 +51,13 @@
             </form>
             {% if app.user %}
                 <div class="d-flex m-2">
-                    {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    {% if app.user.firstName %}
+                        <span class="m-2">{{ app.user.firstName }}</span>
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger" role="button">Logout</a>
+                    {% else %}
+                        <span class="m-2">{{ app.user.username }}</span>
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger" role="button">Logout</a>
+                    {% endif %}
                 </div>
             {% else %}
                 <div class="d-flex m-2">

@@ -2,16 +2,21 @@
 
 ## Introduction
 ### Requirements
-- [PHP 8.1](https://www.php.net/releases/8.1/en.php)
-- [Symfony](https://symfony.com/doc/current/index.html)s
-- [Sonata Admin](https://sonata-project.org/)
+- [Git](https://git-scm.com/)
+- [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 - [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+### Technologies
+- [PHP 8.1](https://www.php.net/releases/8.1/en.php)
+- [Symfony 5.3](https://symfony.com/doc/current/index.html)
 - [Composer](https://getcomposer.org/)
+- [Sonata Admin](https://sonata-project.org/)
 - [Doctrine](https://www.doctrine-project.org/)
+- [Twig](https://twig.symfony.com/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- [Foundry](https://github.com/zenstruck/foundry)
 - [Nginx](https://www.nginx.com/)
 - [MariaDB](https://mariadb.org/)
-
-
 ### About
 
 
@@ -28,30 +33,30 @@ Follow the steps to create the ``development`` environment.
 git clone git@github.com:Resodx/arca-test.git && cd arca-test
 ```
 
-- Docker Compose
+#### Docker Compose
 - Open the terminal in the root folder of the project and run the command:
 ```sh
-    docker-compose up -d --build
+docker-compose up -d --build
 ```
 
-- Composer
+#### Composer
 - Open the terminal in the root folder of the project and run the command:
 ```sh
-    docker exec -it arcatest composer install
+docker exec -it arcatest composer install
 ```
-- Database
-- Migrate Database
+#### Database
+- Run Migrate
 ```sh
-    docker exec -it arcatest php bin/console doctrine:migrations:migrate --dry-run
+docker exec -it arcatest php bin/console doctrine:migrations:migrate --dry-run
 ```
-- Populate Database
+- Run Fixtures
 ```sh
-    docker exec -it arcatest php bin/console doctrine:fixtures:load --no-interaction
+docker exec -it arcatest php bin/console doctrine:fixtures:load --no-interaction
 ```
 - Default Admin User
 ```sh
-    username: admin
-    password: admin
+username: admin
+password: admin
 ```
 
 ## Gitflow

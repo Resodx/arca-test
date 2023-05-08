@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+composer install --no-interaction --no-progress --no-suggest --prefer-dist
+
+php bin/console doctrine:migrations:migrate --no-interaction
+
+php bin/console doctrine:fixtures:load --no-interaction
+
+php bin/console cache:clear
+
+php-fpm

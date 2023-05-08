@@ -69,16 +69,16 @@ final class UserAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-        ->add('id')
-        ->add('username')
-        ->add('roles', FieldDescriptionInterface::TYPE_CHOICE, [
-            'choices' => [
-                'ROLE_MASTER' => 'MASTER',
-                'ROLE_ADMIN' => 'ADMIN',
-                'ROLE_USER' => 'USER',
-            ],
-            'multiple' => true,
-            'expanded' => true,
+            ->add('id')
+            ->add('username')
+            ->add('roles', FieldDescriptionInterface::TYPE_CHOICE, [
+                'choices' => [
+                    'ROLE_MASTER' => 'MASTER',
+                    'ROLE_ADMIN' => 'ADMIN',
+                    'ROLE_USER' => 'USER',
+                ],
+                'multiple' => true,
+                'expanded' => true,
             ])
             // ->add('password')
             ->add('firstName')
@@ -87,7 +87,7 @@ final class UserAdmin extends AbstractAdmin
     }
 
     protected function configureRoutes(RouteCollectionInterface $collection): void
-    { 
+    {
         // $collection->remove('edit');
         // $collection->remove('create');
     }

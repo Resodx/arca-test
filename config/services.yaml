@@ -26,14 +26,14 @@ services:
     admin.user:
         class: App\Admin\UserAdmin
         tags:
-            - { name: sonata.admin, model_class: App\Entity\User, controller: App\Controller\UserAdminController, manager_type: orm, group: 'Admin', label: User }
+            - { name: sonata.admin, model_class: App\Entity\User, controller: App\Controller\UserAdminController, manager_type: orm, group: 'Business Finder', label: Users }
 
     admin.category:
         class: App\Admin\CategoryAdmin
         tags:
-            - { name: sonata.admin, model_class: App\Entity\Category, controller: App\Controller\CategoryAdminController, manager_type: orm, group: 'Admin', label: Category }
+            - { name: sonata.admin, model_class: App\Entity\Category, controller: App\Controller\CategoryAdminController, manager_type: orm, group: 'Business Finder', label: Categories }
 
     admin.company:
         class: App\Admin\CompanyAdmin
         tags:
-            - { name: sonata.admin, model_class: App\Entity\Company, controller: App\Controller\CompanyAdminController, manager_type: orm, group: 'Admin', label: Company }
+            - { name: sonata.admin, model_class: App\Entity\Company, controller: App\Controller\CompanyAdminController, manager_type: orm, group: 'Business Finder', label: Companies }

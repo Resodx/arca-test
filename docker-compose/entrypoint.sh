@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-composer install --no-interaction --no-progress --no-suggest --prefer-dist
+composer install --no-interaction --no-progress --prefer-dist
 
 php bin/console doctrine:migrations:migrate --no-interaction
 

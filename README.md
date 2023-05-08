@@ -23,36 +23,36 @@
 
 Follow the steps to create the ``development`` environment.
 
-    - Clone the repository and enter the project folder:
-    ```sh
-    git clone git@github.com:Resodx/arca-test.git && cd arca-test
-    ```
+- Clone the repository and enter the project folder:
+```sh
+git clone git@github.com:Resodx/arca-test.git && cd arca-test
+```
 
-    - Docker Compose
-        - Open the terminal in the root folder of the project and run the command:
-        ```sh
-            docker-compose up -d --build
-        ```
+- Docker Compose
+- Open the terminal in the root folder of the project and run the command:
+```sh
+    docker-compose up -d --build
+```
 
-    - Composer
-        - Open the terminal in the root folder of the project and run the command:
-        ```sh
-            docker exec -it arcatest composer install
-        ```
-    - Database
-        - Migrate Database
-        ```sh
-            docker exec -it arcatest php bin/console doctrine:migrations:migrate --dry-run
-        ```
-        - Populate Database
-        ```sh
-            docker exec -it arcatest php bin/console doctrine:fixtures:load --no-interaction
-        ```
-    - Default Admin User
-    ```sh
-        username: admin
-        password: admin
-    ```
+- Composer
+- Open the terminal in the root folder of the project and run the command:
+```sh
+    docker exec -it arcatest composer install
+```
+- Database
+- Migrate Database
+```sh
+    docker exec -it arcatest php bin/console doctrine:migrations:migrate --dry-run
+```
+- Populate Database
+```sh
+    docker exec -it arcatest php bin/console doctrine:fixtures:load --no-interaction
+```
+- Default Admin User
+```sh
+    username: admin
+    password: admin
+```
 
 ## Gitflow
 

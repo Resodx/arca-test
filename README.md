@@ -39,21 +39,7 @@ git clone git@github.com:Resodx/arca-test.git && cd arca-test
 docker-compose up -d --build
 ```
 
-#### Composer
-- Open the terminal in the root folder of the project and run the command:
-```sh
-docker exec -it arcatest composer install
-```
-#### Database
-- Run Migrate
-```sh
-docker exec -it arcatest php bin/console doctrine:migrations:migrate --dry-run
-```
-- Run Fixtures
-```sh
-docker exec -it arcatest php bin/console doctrine:fixtures:load --no-interaction
-```
-- Default Admin User
+#### Default Admin User
 ```sh
 username: admin
 password: admin

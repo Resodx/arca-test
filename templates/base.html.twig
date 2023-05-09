@@ -35,7 +35,7 @@
 							{% else %}
 								<span class="m-2 fw-bolder">{{ app.user.username }}</span>
 							{% endif %}
-							{% if is_granted('ROLE_ADMIN') %}
+							{% if is_granted('ROLE_MASTER') %}
 								<a href="{{ path('sonata_admin_redirect') }}" class="btn btn-warning me-2" role="button">Admin</a>
 							{% endif %}
 							<a href="{{ path('app_logout') }}" class="btn btn-danger" role="button">Logout</a>
@@ -51,6 +51,16 @@
 		</nav>
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success ">
+				{{ message }}
+			</div>
+		{% endfor %}
+		{% for message in app.flashes('info') %}
+			<div class="alert alert-info ">
+				{{ message }}
+			</div>
+		{% endfor %}
+		{% for message in app.flashes('danger') %}
+			<div class="alert alert-danger ">
 				{{ message }}
 			</div>
 		{% endfor %}

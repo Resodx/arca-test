@@ -15,9 +15,16 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Bundle\SecurityBundle\Security;
 
 final class UserAdmin extends AbstractAdmin
 {
+
+    public function __construct(
+        private Security $security,
+    ) {
+        $user = $this->security->getUser();
+    }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
@@ -32,6 +39,20 @@ final class UserAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $list): void
     {
+
+        $user = $this->security->getUser();
+        if (!(in_array('ROLE_MASTER', $user->getRoles()))) {
+            $actions = [
+                'show' => [],
+            ];
+        } else {
+            $actions = [
+                'show' => [],
+                'edit' => [],
+                'delete' => [],
+            ];
+        }
+
         $list
             ->add('id')
             ->add('username')
@@ -47,11 +68,7 @@ final class UserAdmin extends AbstractAdmin
             ->add('firstName')
             ->add('lastName')
             ->add(ListMapper::NAME_ACTIONS, null, [
-                'actions' => [
-                    'show' => [],
-                    'edit' => [],
-                    'delete' => [],
-                ],
+                'actions' => $actions,
             ]);
     }
 

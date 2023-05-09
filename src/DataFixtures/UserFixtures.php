@@ -31,15 +31,6 @@ class UserFixtures extends Fixture
         $manager->persist($user);
         $manager->flush();
 
-        // UserFactory::createOne([
-        //     'username' => 'admin',
-        //     'password' => 'admin',
-        //     'roles' => ['ROLE_MASTER'],
-        // ]);
-        // UserFactory::createMany(10, [
-        //     'roles' => ['ROLE_USER'],
-        // ]);
-
         $manager->flush();
     }
 }

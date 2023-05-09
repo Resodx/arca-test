@@ -48,7 +48,7 @@ final class UserFactory extends ModelFactory
     {
         return [
             'password' => self::faker()->password(),
-            'roles' => ['ROLE_USER'],
+            'roles' => ['ROLE_ADMIN'],
             'username' => self::faker()->username(),
         ];
     }

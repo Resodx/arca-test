@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register Company
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="companyForm">
+				<h1 class="h3 mb-3 font-weight-normal text-center">Register Company</h1>
+				{{ form_start(companyForm) }}
+				{{ form_row(companyForm.title) }}
+				{{ form_row(companyForm.phone) }}
+				{{ form_row(companyForm.address) }}
+				{{ form_row(companyForm.zipcode) }}
+				{{ form_row(companyForm.city) }}
+				{{ form_row(companyForm.state) }}
+				{{ form_row(companyForm.description) }}
+				<div class="col-12 text-center">
+					<button class="btn btn-lg btn-primary" onclick="CleanForm()">
+						Register
+					</button>
+				</div>
+				{{ form_end(companyForm) }}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block scripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script>
+	
+		$(document).ready(function () {
+			$('#company_phone').mask('(00) 00000-0000');
+			$('#company_zipcode').mask('00000-000');
+
+		});
+
+		function CleanForm() {
+			$('#company_form_phone').val($('#company_form_phone').val().replace(/\D/g, ''));
+			$('#company_form_zipcode').val($('#company_form_zipcode').val().replace(/\D/g, ''));
+			$('#company_form_state').val($('#company_form_state').val().toUpperCase());
+		};
+
+	</script>
+{% endblock %}

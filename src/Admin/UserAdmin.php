@@ -11,6 +11,10 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class UserAdmin extends AbstractAdmin
 {
@@ -35,7 +39,6 @@ final class UserAdmin extends AbstractAdmin
                 'choices' => [
                     'ROLE_MASTER' => 'MASTER',
                     'ROLE_ADMIN' => 'ADMIN',
-                    'ROLE_USER' => 'USER',
                 ],
                 'multiple' => true,
                 'expanded' => true,
@@ -57,11 +60,32 @@ final class UserAdmin extends AbstractAdmin
         $form
             // ->add('id')
             ->add('username')
-            // ->add('roles', FieldDescriptionInterface::TYPE_CHOICE, [
-            //     'multiple' => true,
-            //     'expanded' => true,
-            // ])
-            ->add('password')
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'MASTER' => 'ROLE_MASTER',
+                    'ADMIN' => 'ROLE_ADMIN',
+                    'USER' => 'ROLE_USER',
+                ],
+                'multiple' => true,
+                'expanded' => true,
+            ])
+            ->add('password', PasswordType::class, [
+                // instead of being set onto the object directly,
+                // this is read and encoded in the controller
+                'mapped' => false,
+                'attr' => ['autocomplete' => 'new-password'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
             ->add('firstName')
             ->add('lastName');
     }
@@ -75,7 +99,6 @@ final class UserAdmin extends AbstractAdmin
                 'choices' => [
                     'ROLE_MASTER' => 'MASTER',
                     'ROLE_ADMIN' => 'ADMIN',
-                    'ROLE_USER' => 'USER',
                 ],
                 'multiple' => true,
                 'expanded' => true,

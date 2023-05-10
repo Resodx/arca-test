@@ -23,6 +23,8 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
 
   #Nginx Service
   webserver:
@@ -44,6 +46,8 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
+      app:
+        condition: service_started
 
   #MySQL Service
   mariadb:
@@ -71,10 +75,42 @@ services:
       interval: 5s
       timeout: 5s
 
+  #Elasticsearch Service
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    container_name: arcatest-elasticsearch
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - '9200:9200'
+    environment:
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - arcatest
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9200" ]
+      retries: 20
+      interval: 5s
+      timeout: 5s
+    depends_on:
+      mariadb:
+        condition: service_healthy
+  
+
 #Docker Networks
 networks:
   arcatest:
     driver: bridge
 volumes:
   mariadb:
+    driver: local
+  elasticsearch:
     driver: local

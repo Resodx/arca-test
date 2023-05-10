@@ -17,6 +17,7 @@
 - [Foundry](https://github.com/zenstruck/foundry)
 - [Nginx](https://www.nginx.com/)
 - [MariaDB](https://mariadb.org/)
+- [Elasticsearch](https://www.elastic.co/pt/elasticsearch/)
 ### About
 
 

@@ -6,7 +6,6 @@ use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\OptionsResolver\Options;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
 class Company

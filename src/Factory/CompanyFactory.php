@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Company;
+use App\Entity\Category;
 use App\Repository\CompanyRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -47,13 +48,14 @@ final class CompanyFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'address' => self::faker()->text(255),
-            'city' => self::faker()->text(255),
-            'description' => self::faker()->text(510),
-            'phone' => self::faker()->text(11),
-            'state' => self::faker()->text(2),
-            'title' => self::faker()->text(255),
-            'zipcode' => self::faker()->text(8),
+            'address' => self::faker()->streetAddress(),
+            'city' => self::faker()->city(),
+            'description' => self::faker()->text(),
+            'phone' => self::faker()->numerify('###########'),
+            'state' => strtoupper(self::faker()->lexify('??')),
+            'title' => self::faker()->company(),
+            'zipcode' => self::faker()->numerify('########'),
+            // 'category' => Company::addCategory(),
         ];
     }
 

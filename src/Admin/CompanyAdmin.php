@@ -42,6 +42,9 @@ final class CompanyAdmin extends AbstractAdmin
             ->add('city')
             ->add('state')
             ->add('description')
+            ->add('category', null, [
+                'associated_property' => 'name',
+            ])
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],

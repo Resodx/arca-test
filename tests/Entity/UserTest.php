@@ -6,8 +6,8 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    public function testSomething(): void
+    public function testUser()
     {
-        
+        $this->assertTrue(true);
     }
 }

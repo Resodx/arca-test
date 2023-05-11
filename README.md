@@ -51,6 +51,10 @@ docker-compose up -d --build
 username: admin
 password: admin
 ```
+### URLs
+- [http://localhost:8080](http://localhost:8080) - Application
+- [http://localhost:8080/api](http://localhost:8080/api) - Swagger API Documentation
+- [http://localhost:8080/admin](http://localhost:8080/admin) - Sonata Admin
 
 ## Gitflow
 

@@ -14,7 +14,7 @@ class CompanyFixtures extends Fixture
         
         $category_repository = $manager->getRepository(Category::class)->findAll();
 
-        $companies = CompanyFactory::new()->createMany(10);
+        $companies = CompanyFactory::new()->createMany(50);
 
         foreach ($companies as $company) {
             $company->addCategory($category_repository[array_rand($category_repository)]);

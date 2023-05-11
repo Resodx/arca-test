@@ -18,7 +18,7 @@ class CompanyFormType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Company Name',
+                'label' => 'Title',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a title',

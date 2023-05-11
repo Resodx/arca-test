@@ -1,9 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Business Finder
+{% block title %}
+	Business Finder
 {% endblock %}
 
 {% block body %}
+	<div class="container mt-5">
+		<form action="/search" method="get" class="searchForm">
+			<div class="row d-flex justify-content-center">
+				<div class="col-6">
+					<input type="text" class="form-control text-center" id="search_field" name="q" placeholder="What are you looking for?">
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-12 text-center">
+					<button type="submit" class="btn btn-lg btn-primary" onclick="search()">
+						Search
+					</button>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-12 text-center" id="div1"></div>
+			</div>
+		</form>
+	</div>
 
+{% endblock %}
 
+{% block scripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script>
+
+        {# function search() {
+			$.ajax({
+                url: "http://localhost:8080/search?q=" + $("#search_field").val(),
+                type: "GET",
+                success: function(results){
+                    console.log(results);
+                }
+            });
+		}; #}
+
+	</script>
 {% endblock %}

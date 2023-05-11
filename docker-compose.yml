@@ -15,6 +15,7 @@ services:
     volumes:
       - ./:/var/www
       - ./docker-compose/entrypoint.sh:/etc/entrypoint.sh
+      - ./docker-compose/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     working_dir: /var/www
     networks:
       - arcatest
@@ -87,10 +88,10 @@ services:
     environment:
       - discovery.type=single-node
       - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - xpack.security.enabled=false
       - xpack.security.http.ssl.enabled=false
+      - http.cors.enabled=true
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     networks:

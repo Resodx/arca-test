@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ company.title }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="row justify-content-center align-items-center">
+
+		<div class="mt-5 col-md-9">
+			<div class="row fs-2">
+				{{ company.title }}
+			</div>
+			<div class="row fw-light">
+				in
+				{{ company.categories }}
+			</div>
+			<div class="mt-5">
+				<div class="row fs-3">
+					About
+				</div>
+				<div class="row">
+					<p>{{ company.description }}</p>
+				</div>
+				<div class="row">
+
+					<p>
+						Address:
+						{{ company.address }},
+						{{ company.city }}
+						-
+						{{ company.state }},
+						{{ company.zipcode }}
+					</p>
+				</div>
+				<div class="row">
+					<p id="phone">Phone:
+						{{ company.phone }}
+					</p>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>{% endblock %}

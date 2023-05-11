@@ -18,6 +18,12 @@
 - [Nginx](https://www.nginx.com/)
 - [MariaDB](https://mariadb.org/)
 - [Elasticsearch](https://www.elastic.co/pt/elasticsearch/)
+
+### Bundles
+- [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
+- [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle)
+- [Zenstruck\Foundry](https://github.com/zenstruck/foundry)
+- [FOSElasticaBundle](https://github.com/FriendsOfSymfony/FOSElasticaBundle)
 ### About
 
 

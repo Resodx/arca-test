@@ -4,13 +4,15 @@ fos_elastica:
         default: { url: '%env(ELASTICSEARCH_URL)%' }
     indexes:
         company:
+            dynamic: false
             properties:
-                title: ~
-                address: ~
-                city: ~
-                zipcode: ~
-                category: ~
-                description: ~
+                id: { type: integer }
+                title: { type: text }
+                address: { type: text }
+                city: { type: text }
+                zipcode: { type: text }
+                category: { type: text }
+                description: { type: text }
             persistence:
                 driver: orm
                 model: App\Entity\Company

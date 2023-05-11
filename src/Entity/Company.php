@@ -6,8 +6,13 @@ use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
+#[ORM\Table(name: '`company`')]
+#[ApiResource(
+    formats: ['json'],
+)]
 class Company
 {
     #[ORM\Id]
